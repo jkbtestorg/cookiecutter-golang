@@ -1,20 +1,74 @@
+--- 
 apiVersion: backstage.io/v1beta2
 kind: Template
-metadata:
+metadata: 
+  description: "Create a Golang repo with this template built by members of the Go community"
   name: golang-starter
-  title: Golang Microservice
-  description: Create a Golang repo with this template built by members of the Go community
-  tags:
+  tags: 
     - experimental
     - go
-spec:
+  title: "Golang Microservice"
+spec: 
   owner: web@example.com
-  templater: cookiecutter
-  type: service
-  path: "."
-  parameters:
-    - title: Provide some simple information
-    required:
+  parameters: 
+    properties: 
+      component_id: 
+        description: "Unique name of the component"
+        title: Name
+        type: string
+      docker_build_image: 
+        default: golang
+        description: "The docker base image to use when building the service"
+        title: "Docker Build Image"
+        type: string
+      docker_build_image_version: 
+        default: alpine
+        description: "The image version to use when building the service"
+        enum: 
+          - alpine
+        title: "Docker Build Image Version"
+        type: string
+      docker_image: 
+        default: "alpine-base-image:latest"
+        description: "The docker base image to use when running the service"
+        title: "Docker Image"
+        type: string
+      project_short_description: 
+        description: "Description of the component"
+        title: Description
+        type: string
+      use_ci: 
+        default: github
+        description: "Add a CI config to the repo, Gitub Actions, Circle or Travis are the only supported right now"
+        enum: 
+          - github
+          - travis
+          - circle
+          - none
+        title: "Add CI"
+        type: string
+      use_cobra_cmd: 
+        default: "y"
+        enum: 
+          - "y"
+          - "n"
+        title: "Enable Cobra CLI Tools (https://github.com/spf13/cobra)"
+        type: string
+      use_logrus_logging: 
+        default: "y"
+        enum: 
+          - "y"
+          - "n"
+        title: "Enable Logrus Logging (https://github.com/sirupsen/logrus)"
+        type: string
+      use_viper_config: 
+        default: "y"
+        enum: 
+          - "y"
+          - "n"
+        title: "Enable Viper Config (https://github.com/spf13/viper)"
+        type: string
+    required: 
       - component_id
       - project_short_description
       - docker_image
@@ -24,60 +78,6 @@ spec:
       - use_viper_config
       - use_ci
       - use_cobra_cmd
-    properties:
-      component_id:
-        title: Name
-        type: string
-        description: Unique name of the component
-      project_short_description:
-        title: Description
-        type: string
-        description: Description of the component
-      docker_image:
-        title: Docker Image
-        type: string
-        description: The docker base image to use when running the service
-        default: alpine-base-image:latest
-      docker_build_image:
-        title: Docker Build Image
-        type: string
-        description: The docker base image to use when building the service
-        default: golang
-      docker_build_image_version:
-        title: Docker Build Image Version
-        description: The image version to use when building the service
-        type: string
-        enum:
-          - alpine
-        default: alpine
-      use_logrus_logging:
-        title: Enable Logrus Logging (https://github.com/sirupsen/logrus)
-        type: string
-        enum:
-          - "y"
-          - "n"
-        default: "y"
-      use_viper_config:
-        title: Enable Viper Config (https://github.com/spf13/viper)
-        type: string
-        enum:
-          - "y"
-          - "n"
-        default: "y"
-      use_cobra_cmd:
-        title: Enable Cobra CLI Tools (https://github.com/spf13/cobra)
-        type: string
-        enum:
-          - "y"
-          - "n"
-        default: "y"
-      use_ci:
-        title: Add CI
-        description: Add a CI config to the repo, Gitub Actions, Circle or Travis are the only supported right now
-        type: string
-        enum:
-          - github
-          - travis
-          - circle
-          - none
-        default: github
+  path: "."
+  templater: cookiecutter
+  type: service
