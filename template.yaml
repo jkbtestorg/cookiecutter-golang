@@ -78,14 +78,16 @@ spec:
       - use_viper_config
       - use_ci
       - use_cobra_cmd
-  steps:
-    - id: publish # a unique id for the step, can be anything you like
-      name: Publish # a user friendly name for the step, this is what is shown in the frontend
-      action: publish:github # the action ID that has been registered with the scaffolder-backend
-      input: # parameters that are passed as input to the action handler function
-        allowedHosts: ['github.com']
-        description: 'This is {{ parameters.name }}' # handlebars templating is supported with the values from the parameters section in the same file.
-        repoUrl: '{{ parameters.repoUrl }}      
   path: "."
+  steps: 
+    - 
+      action: "publish:github"
+      id: publish
+      input: 
+        allowedHosts: 
+          - github.com
+        description: "This is {{ parameters.name }}"
+        repoUrl: "{{ parameters.repoUrl }}"
+      name: Publish
   templater: cookiecutter
   type: service
