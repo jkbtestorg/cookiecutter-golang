@@ -12,7 +12,8 @@ spec:
   templater: cookiecutter
   type: service
   path: "."
-  schema:
+  parameters:
+    - title: Provide some simple information
     required:
       - component_id
       - project_short_description
