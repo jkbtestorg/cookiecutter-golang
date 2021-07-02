@@ -10,6 +10,16 @@ metadata:
   title: "Golang Microservice"
 spec: 
   owner: web@example.com
+  steps: 
+    - 
+      action: "publish:github"
+      id: publish
+      input: 
+        allowedHosts: 
+          - github.com
+        description: "This is {{ parameters.name }}"
+        repoUrl: "{{ parameters.repoUrl }}"
+      name: Publish
   parameters: 
     properties: 
       component_id: 
@@ -79,15 +89,5 @@ spec:
       - use_ci
       - use_cobra_cmd
   path: "."
-  steps: 
-    - 
-      action: "publish:github"
-      id: publish
-      input: 
-        allowedHosts: 
-          - github.com
-        description: "This is {{ parameters.name }}"
-        repoUrl: "{{ parameters.repoUrl }}"
-      name: Publish
   templater: cookiecutter
   type: service
