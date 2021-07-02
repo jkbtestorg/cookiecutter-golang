@@ -3,7 +3,7 @@ apiVersion: backstage.io/v1beta2
 kind: Template
 metadata: 
   description: "Create a Golang repo with this template built by members of the Go community"
-  name: golang-starter
+  name: golang-starter-v2
   tags: 
     - experimental
     - go
